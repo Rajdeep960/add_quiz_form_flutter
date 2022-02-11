@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/shared/constants.dart';
 import 'package:quiz_app/shared/loading.dart';
+import 'package:quiz_app/screens/select_quiz.dart';
 
 class CreateQuiz extends StatefulWidget {
 
@@ -13,7 +14,8 @@ class _CreateQuizState extends State<CreateQuiz> {
 
   // number of questions
   int countQuestion = 1;
-  int maxNumberOfQuestions = 10;
+  // int maxNumberOfQuestions = 10;
+  int maxNumberOfQuestions = int.tryParse(Value.getString());
 
   //text field state
   String question = "";
@@ -381,6 +383,10 @@ class _CreateQuizState extends State<CreateQuiz> {
                                     countQuestion += 1;
                                     loading = false;
                                   });
+                                  if (countQuestion > maxNumberOfQuestions) {
+                                    Navigator.pop(context);
+
+                              }
                                 }
                                 else {
                                   setState(() {
@@ -389,8 +395,9 @@ class _CreateQuizState extends State<CreateQuiz> {
                                 }
                               }
                             },
-                            ),
+                           ),
                           ),
+
 
                         SizedBox(height: 10.0,),
 
